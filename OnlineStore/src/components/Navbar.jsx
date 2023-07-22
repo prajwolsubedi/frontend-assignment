@@ -1,11 +1,8 @@
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import useOnline from "../../src/hooks/useOnline";
-import Logo7 from "../assets/images/logo7.png";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { MdOutlinePersonOutline } from "react-icons/md";
-import { IoLocationOutline } from "react-icons/io5";
-import { TbDiscount2 } from "react-icons/tb";
 import { IoMenu } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
 import { useState } from "react";
@@ -41,17 +38,14 @@ const Navbar = () => {
       <div className="flex md:gap-5 lg:gap-0 justify-between pt-10 pb-4 bg-[#232f3e]  text-[#d6d6d6]  max-sm:flex-wrap  max-sm:px-5 lg:pl-28 md:px-14 sm:px-10 ">
         <div className="max-sm:w-2/12  max-sm:pl-2 sm:w-1/12 md:w-3/12 lg:w-2/12 lg:px-0  ">
           <NavLink to="/products">
-          <div className="flex">
-          <img src="public/logo.svg" alt="logo" className="text-white w-12 max-sm:w-11"/>
-          </div>
-        </NavLink>
-        {/* <div className="border-2 border-black flex ml-16 font-figtree text-[#7c9abd] -mt-1 w-2/12  max-sm:hidden max-md:hidden  max-lg:w-1/12 max-xl:w-2/12  max-lg:mx-0 max-xl:mx-0 ">
-        <IoLocationOutline size={35} className="mt-1 max-lg:hidden" />
-        <div className=" flex flex-col leading-4 mt-1 pt-1 max-lg:text-xs">
-          <p className="text-[#7c9abd]">FAST</p>
-          <p className="text-[#7c9abd] ">DELIVERY</p>
-        </div>
-      </div> */}
+            <div className="flex">
+              <img
+                src="/logo.svg"
+                alt="logo"
+                className="text-white w-12 max-sm:w-11"
+              />
+            </div>
+          </NavLink>
         </div>
         <div className="md:w-5/12">
           <SearchProduct />
@@ -61,14 +55,12 @@ const Navbar = () => {
             Home
           </NavLink>
           <NavLink to="/cart" className="flex hover:text-[#8badd7] ">
-            {<AiOutlineShoppingCart className="lg:w-7 lg:h-7 sm:h-6 sm:w-6"/>}-{" "}
+            {<AiOutlineShoppingCart className="lg:w-7 lg:h-7 sm:h-6 sm:w-6" />}-{" "}
             {totalQuantity}
           </NavLink>
           <NavLink to="/profile" className="flex hover:text-[#8badd7]">
             {
-              <MdOutlinePersonOutline
-                className="mt-1 max-md:hidden lg:w-7 lg:h-7 sm:h-6 sm:w-6"
-              />
+              <MdOutlinePersonOutline className="mt-1 max-md:hidden lg:w-7 lg:h-7 sm:h-6 sm:w-6" />
             }{" "}
             <span className=" mt-1 ">Profile</span>
             <p className="pt-2 pl-2 text-sm max-md:hidden">
@@ -91,7 +83,6 @@ const Navbar = () => {
           </div>
         )}
       </div>
-      
     </>
   );
 };
