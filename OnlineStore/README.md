@@ -1,8 +1,8 @@
 # Getting Started
 To run this project locally, follow these steps:
 
-Clone the repository: git clone <repository_url>
-Navigate to the project directory: cd ecommerce-website
+Clone the repository: git clone git@github.com:prajwolsubedi/frontend-assignment.git
+Navigate to the project directory: cd onlinestore
 Install dependencies: npm install
 Run the development server: npm run dev
 
