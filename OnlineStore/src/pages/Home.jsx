@@ -7,6 +7,7 @@ import { initializeProducts } from "../store/slice/productSlice";
 import { useSelector } from "react-redux";
 import axiosConfig from "../config/axios";
 import { useQuery } from "@tanstack/react-query";
+import ShimmerUI from "../components/ShimmerUI";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,11 @@ const Home = () => {
   }, []);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <ShimmerUI />
+      </div>
+    );
   }
 
   if (error) {
