@@ -7,6 +7,7 @@ const productSlice = createSlice({
     allProducts: [],
     filteredProducts: [],
   },
+  
   reducers: {
     initializeProducts: (state, action) => {
       state.allProducts = action.payload;

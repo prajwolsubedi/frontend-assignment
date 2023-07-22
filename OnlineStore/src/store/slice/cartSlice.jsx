@@ -120,7 +120,7 @@ const cartSlice = createSlice({
           0
         );
       }
-
+      
       setItemFunc(
         state.cartItems.map((item) => item),
         state.totalAmount,
