@@ -1,11 +1,9 @@
 import { GrSearch } from "react-icons/gr";
 import { IoLocationOutline } from "react-icons/io5";
-import PriceDropdown from "./PriceDropdown";
-import CategoryDropdown from "./CategoryDropdown";
 import { useSelector, useDispatch } from "react-redux";
-import { onInputChange } from "../assets/ProductSlice";
-import { onFilter } from "../assets/ProductSlice";
-import "../css/custom.css";
+import { onInputChange } from "../store/slice/productSlice";
+import { onFilter } from "../store/slice/productSlice";
+import "../styles/custom.css";
 
 const SearchProduct = () => {
   const dispatch = useDispatch();
@@ -27,10 +25,10 @@ const SearchProduct = () => {
 
   return (
     <form
-      className="px-16 py-2 pb-7 pr-28 relative bg-[#232f3e]  flex justify-between  max-sm:flex-col max-sm:px-10 max-md:px-5 max-lg:px-10 max-xl:px-16 max-xl:py-5 "
+      className="w-full md:px-0 md:py-2 lg:py-0 relative bg-[#232f3e]  flex justify-between max-sm:flex-col max-sm:px-0 lg:px-0"
       onSubmit={null}
     >
-      <div className="flex w-7/12 mr-20  ring-3 focus-within:ring-[#ea9834] rounded-lg max-sm:w-full max-sm:my-5 max-md:w-8/12 max-md:mr-5 max-lg:mx-0 max-lg:w-8/12 max-lg:text-sm max-xl:mx-0  ">
+      <div className="flex ring-3 focus-within:ring-[#ea9834] rounded-lg max-sm:w-full  lg:mx-0 md:w-full ">
         <input
           onChange={(e) => dispatch(onInputChange(e.target.value))}
           onKeyDown={(e) => {
@@ -38,7 +36,7 @@ const SearchProduct = () => {
           }}
           type="search"
           placeholder="Search Product"
-          className="w-11/12 p-2 rounded-l-lg  outline-none"
+          className="w-full p-2 rounded-l-lg  outline-none text-black"
         />
         <button
           type="button"
@@ -47,17 +45,6 @@ const SearchProduct = () => {
         >
           <GrSearch className="text-[#111] mx-1" size={26} />
         </button>
-      </div>
-      <div className="flex w-6/12 justify-between max-sm:w-full max-sm:my-5 max-md:w-7/12 max-lg:w-6/12 max-lg:justify-evenly max-xl:w-7/12 max-xl:justify-evenly max-lg:text-sm ">
-        <CategoryDropdown filterProducts={filterProducts} />
-        <PriceDropdown filterProducts={filterProducts} />
-      </div>
-      <div className="flex ml-16 font-figtree text-[#7c9abd] -mt-1 w-2/12  max-sm:hidden max-md:hidden  max-lg:w-1/12 max-xl:w-2/12  max-lg:mx-0 max-xl:mx-0 ">
-        <IoLocationOutline size={35} className="mt-1 max-lg:hidden" />
-        <div className=" flex flex-col leading-4 mt-1 pt-1 max-lg:text-xs">
-          <p className="text-[#7c9abd]">FAST</p>
-          <p className="text-[#7c9abd] ">DELIVERY</p>
-        </div>
       </div>
     </form>
   );

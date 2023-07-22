@@ -4,11 +4,12 @@ import useOnline from "../../src/hooks/useOnline";
 import Logo7 from "../assets/images/logo7.png";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { MdOutlinePersonOutline } from "react-icons/md";
-import { IoInformationCircle } from "react-icons/io5";
+import { IoLocationOutline } from "react-icons/io5";
 import { TbDiscount2 } from "react-icons/tb";
 import { IoMenu } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
 import { useState } from "react";
+import SearchProduct from "./SearchProduct";
 
 const NavLinks = () => {
   return (
@@ -37,27 +38,36 @@ const Navbar = () => {
   const totalQuantity = useSelector((store) => store.cart.totalQuantity);
   return (
     <>
-      <div className="flex pt-5 bg-[#232f3e]  text-[#d6d6d6] justify-between max-sm:flex-wrap max-md:pt-5 ">
-        <div className="w-2/12 pl-16 max-sm:w-4/12  max-sm:pl-2 max-md:ml-5 max-md:w-1/12  max-lg:w-1/12 max-lg:pl-0 max-lg:mx-10 max-xl:w-3/12 ">
+      <div className="flex md:gap-5 lg:gap-0 justify-between pt-10 pb-4 bg-[#232f3e]  text-[#d6d6d6]  max-sm:flex-wrap  max-sm:px-5 lg:pl-28 md:px-14 sm:px-10 ">
+        <div className="max-sm:w-2/12  max-sm:pl-2 sm:w-1/12 md:w-3/12 lg:w-2/12 lg:px-0  ">
           <NavLink to="/products">
-          <div className="flex ">
-          <img src="public/logo.svg" alt="logo" className="text-white w-14"/>
+          <div className="flex">
+          <img src="public/logo.svg" alt="logo" className="text-white w-12 max-sm:w-11"/>
           </div>
         </NavLink>
+        {/* <div className="border-2 border-black flex ml-16 font-figtree text-[#7c9abd] -mt-1 w-2/12  max-sm:hidden max-md:hidden  max-lg:w-1/12 max-xl:w-2/12  max-lg:mx-0 max-xl:mx-0 ">
+        <IoLocationOutline size={35} className="mt-1 max-lg:hidden" />
+        <div className=" flex flex-col leading-4 mt-1 pt-1 max-lg:text-xs">
+          <p className="text-[#7c9abd]">FAST</p>
+          <p className="text-[#7c9abd] ">DELIVERY</p>
         </div>
-        <div className="max-sm:hidden max-md:px-5 max-lg:w-10/12 max-lg:px-5 max-lg:mx-5  max-md:w-10/12 max-md:mr-0 w-7/12 px-24 mr-12 flex justify-between items-center font-comic font-semibold text-lg max-xl:w-9/12 max-xl:mx-0 max-xl:px-16 max-md:text-base ">
+      </div> */}
+        </div>
+        <div className="md:w-5/12">
+          <SearchProduct />
+        </div>
+        <div className="text-lg sm:w-5/12 md:w-4/12 md:px-0 md:pb-0 lg:px-8 lg:pb-5  max-sm:hidden flex justify-between items-center font-comic font-semibold ">
           <NavLink to="/products" className="flex hover:text-[#8badd7]">
             Home
           </NavLink>
           <NavLink to="/cart" className="flex hover:text-[#8badd7] ">
-            {<AiOutlineShoppingCart size={25} className="mr-2" />}-{" "}
+            {<AiOutlineShoppingCart className="lg:w-7 lg:h-7 sm:h-6 sm:w-6"/>}-{" "}
             {totalQuantity}
           </NavLink>
           <NavLink to="/profile" className="flex hover:text-[#8badd7]">
             {
               <MdOutlinePersonOutline
-                size={25}
-                className="mt-1 mr-2 max-md:hidden"
+                className="mt-1 max-md:hidden lg:w-7 lg:h-7 sm:h-6 sm:w-6"
               />
             }{" "}
             <span className=" mt-1 ">Profile</span>
@@ -70,9 +80,9 @@ const Navbar = () => {
           <button
             type="button"
             onClick={toggleNavbar}
-            className="text-[#7c9abd] mt-3"
+            className="text-[#7c9abd] mt-1"
           >
-            {!isOpen ? <IoMenu size={30} /> : <IoClose size={30} />}
+            {!isOpen ? <IoMenu size={32} /> : <IoClose size={32} />}
           </button>
         </div>
         {isOpen && (
@@ -81,6 +91,7 @@ const Navbar = () => {
           </div>
         )}
       </div>
+      
     </>
   );
 };
