@@ -14,26 +14,27 @@ const Home = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  const {
-    data: products,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ["products"],
-    queryFn: () => axiosConfig.get("/products").then((res) => res.data),
-  });
+const {
+  data: products,
+  isLoading,
+  error,
+} = useQuery({
+  queryKey: ["products"],
+  queryFn: () => axiosConfig.get("/products").then((res) => res.data),
+});
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+if (isLoading) {
+  return <div>Loading...</div>;
+}
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
-  if (products) {
-    dispatch(initializeProducts(products));
-  }
+if (error) {
+  return <div>Error: {error.message}</div>;
+}
+if (products) {
+  dispatch(initializeProducts(products));
+}
 
+  
   return (
     <div className="border-2 border-black">
       <Navbar />
