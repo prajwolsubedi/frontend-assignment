@@ -8,6 +8,7 @@ const ProductsCard = () => {
   const filteredProducts = useSelector(
     (state) => state?.product?.filteredProducts
   );
+  
   return filteredProducts.length === 0 ? (
     <ShimmerUI />
   ) : (
