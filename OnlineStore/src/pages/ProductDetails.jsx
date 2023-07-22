@@ -9,37 +9,47 @@ import { useEffect, useState } from "react";
 import { addItem } from "../store/slice/cartSlice";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useDispatch } from "react-redux";
-import "../styles/custom.css"
-import {useSelector} from "react-redux"
+import "../styles/custom.css";
+import { useSelector } from "react-redux";
+import axiosConfig from "../config/axios";
+import { useQuery } from "@tanstack/react-query";
 const ProductDetail = () => {
-  const allProducts = useSelector(
-    (state) => state.product.allProducts
-  );
+  const dispatch = useDispatch();
   const [productItem, setProductItem] = useState([]);
   const [orderCount, setorderCount] = useState(1);
   const { id } = useParams();
+
   useEffect(() => {
-    getProductItem();
     window.scrollTo(0, 0);
   }, []);
 
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["repoData", id],
+    queryFn: () => axiosConfig.get(`/products/${id}`).then((res) => res.data),
+    onSuccess: (data) => setProductItem(data),
+  });
 
-  function getProductItem() {
-    const selectedProduct = allProducts.find((item) => item.id == id)
-    setProductItem(selectedProduct)
-  }
+  if (isLoading)
+    return (
+      <>
+        <ShimmerUI />
+      </>
+    );
 
-
-  const dispatch = useDispatch();
-
+  if (error)
+    return (
+      <>
+        <section className="h-screen flex justify-center items-center">
+          {" "}
+          An error has occured
+        </section>
+      </>
+    );
   const addProductItem = ({ productItem, orderCount }) => {
     dispatch(addItem({ productItem, orderCount }));
   };
 
-
-  return !productItem || productItem.length === 0 ? (
-    <ShimmerUI />
-  ) : (
+  return (
     <>
       <Navbar />
       <div className="flex max-sm:flex-col max-sm:items-center max-sm:text-sm max-md:text-sm">
