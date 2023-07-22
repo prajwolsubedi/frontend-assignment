@@ -10,7 +10,11 @@ import { addItem } from "../store/slice/cartSlice";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import "../styles/custom.css"
+import {useSelector} from "react-redux"
 const ProductDetail = () => {
+  const allProducts = useSelector(
+    (state) => state.product.allProducts
+  );
   const [productItem, setProductItem] = useState([]);
   const [orderCount, setorderCount] = useState(1);
   const { id } = useParams();
@@ -20,16 +24,19 @@ const ProductDetail = () => {
   }, []);
 
 
-  async function getProductItem() {
-    const data = await fetch("https://fakestoreapi.com/products/"+id);
-    const json = await data.json();
-    setProductItem(json);
+  function getProductItem() {
+    const selectedProduct = allProducts.find((item) => item.id == id)
+    setProductItem(selectedProduct)
   }
+
+
   const dispatch = useDispatch();
 
   const addProductItem = ({ productItem, orderCount }) => {
     dispatch(addItem({ productItem, orderCount }));
   };
+
+
   return !productItem || productItem.length === 0 ? (
     <ShimmerUI />
   ) : (

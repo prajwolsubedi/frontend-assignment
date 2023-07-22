@@ -5,20 +5,35 @@ import Footer from "../components/Footer";
 import { useDispatch } from "react-redux";
 import { initializeProducts } from "../store/slice/productSlice";
 import { useSelector } from "react-redux";
+import axiosConfig from "../config/axios";
+import { useQuery } from "@tanstack/react-query";
 
 const Home = () => {
   const allProducts = useSelector((state) => state.product.allProducts);
   const dispatch = useDispatch();
   useEffect(() => {
-    getProduct();
     window.scrollTo(0, 0);
   }, []);
+  const {
+    data: products,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["products"],
+    queryFn: () => axiosConfig.get("/products").then((res) => res.data),
+  });
 
-  async function getProduct() {
-    const data = await fetch("https://fakestoreapi.com/products");
-    const json = await data.json();
-    dispatch(initializeProducts(json));
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+  if (products) {
+    dispatch(initializeProducts(products));
+  }
+
   return (
     <div className="border-2 border-black">
       <Navbar />
